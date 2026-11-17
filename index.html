@@ -1,0 +1,402 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI-Based Maze Solver</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+
+        <div class="brand">
+            <div class="brand-icon">🧩</div>
+
+            <div>
+                <h1>AI Maze Solver</h1>
+                <p>Smart paths, intelligent solutions.</p>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <span class="project-tag">MCA AI PROJECT</span>
+            <span class="ai-status">
+                <span class="status-dot"></span>
+                AI Engine Ready
+            </span>
+        </div>
+
+    </header>
+
+    <main class="container">
+
+        <!-- Welcome Section -->
+        <section class="welcome-section">
+
+            <div>
+                <span class="eyebrow">ARTIFICIAL INTELLIGENCE PROJECT</span>
+
+                <h2>Find the <span>Smartest Path.</span></h2>
+
+                <p>
+                    Explore how intelligent search algorithms navigate
+                    through obstacles and discover the destination.
+                </p>
+            </div>
+
+            <div class="welcome-decoration">✦</div>
+
+        </section>
+
+        <!-- Controls -->
+        <section class="controls panel">
+
+            <div class="control-group">
+
+                <label for="algorithm">Choose Algorithm</label>
+
+                <select id="algorithm">
+
+                    <option value="bfs">
+                        Breadth-First Search (BFS)
+                    </option>
+
+                    <option value="dfs">
+                        Depth-First Search (DFS)
+                    </option>
+
+                    <option value="astar">
+                        A* Search
+                    </option>
+
+                    <option value="greedy">
+                        Greedy Best-First Search
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="control-group speed-control">
+
+                <label for="speed">
+                    Animation Speed:
+                    <span id="speedValue">30</span> ms
+                </label>
+
+                <input
+                    type="range"
+                    id="speed"
+                    min="1"
+                    max="150"
+                    value="30"
+                >
+
+            </div>
+
+            <div class="buttons">
+
+                <button id="startBtn" class="primary">
+                    ▶ Start Search
+                </button>
+
+                <button id="resetBtn">
+                    ↻ Reset
+                </button>
+
+                <button id="clearBtn">
+                    Clear Maze
+                </button>
+
+                <button id="randomBtn" class="random-btn">
+                    ✨ Random Maze
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- Main Workspace -->
+        <section class="workspace">
+
+            <!-- Maze Section -->
+            <div class="maze-panel panel">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="section-label">VISUALIZATION</span>
+                        <h2>Explore the Maze</h2>
+                    </div>
+
+                    <span id="status" class="status">
+                        Ready to Start
+                    </span>
+
+                </div>
+
+                <p class="instruction">
+                    Click or drag on cells to create walls.
+                    Click again to erase them.
+                </p>
+
+                <div class="maze-wrapper">
+
+                    <div id="maze" class="maze-grid"></div>
+
+                </div>
+
+                <!-- Legend -->
+                <div class="legend">
+
+                    <div>
+                        <span class="legend-box start"></span>
+                        Start
+                    </div>
+
+                    <div>
+                        <span class="legend-box end"></span>
+                        Destination
+                    </div>
+
+                    <div>
+                        <span class="legend-box wall"></span>
+                        Wall
+                    </div>
+
+                    <div>
+                        <span class="legend-box visited"></span>
+                        Visited
+                    </div>
+
+                    <div>
+                        <span class="legend-box path"></span>
+                        Final Path
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Right Side -->
+            <aside class="side-panel">
+
+                <!-- Algorithm Information -->
+                <div class="panel algorithm-info">
+
+                    <span class="section-label">LEARN AI</span>
+
+                    <h2>Algorithm Information</h2>
+
+                    <div class="info-icon">✧</div>
+
+                    <h3 id="algorithmName">
+                        Breadth-First Search
+                    </h3>
+
+                    <p id="algorithmDescription">
+
+                        BFS explores the maze level by level
+                        using a queue and finds the shortest
+                        path in an unweighted grid.
+
+                    </p>
+
+                </div>
+
+                <!-- Statistics -->
+                <div class="panel statistics">
+
+                    <span class="section-label">LIVE ANALYSIS</span>
+
+                    <h2>Performance Statistics</h2>
+
+                    <div class="stat">
+
+                        <span>Algorithm</span>
+
+                        <strong id="statAlgorithm">-</strong>
+
+                    </div>
+
+                    <div class="stat">
+
+                        <span>Visited Nodes</span>
+
+                        <strong id="visitedNodes">0</strong>
+
+                    </div>
+
+                    <div class="stat">
+
+                        <span>Path Length</span>
+
+                        <strong id="pathLength">0</strong>
+
+                    </div>
+
+                    <div class="stat">
+
+                        <span>Execution Time</span>
+
+                        <strong id="executionTime">0 ms</strong>
+
+                    </div>
+
+                    <div class="stat">
+
+                        <span>Path Found</span>
+
+                        <strong id="pathFound">-</strong>
+
+                    </div>
+
+                </div>
+
+                <!-- Comparison -->
+                <div class="panel comparison">
+
+                    <span class="section-label">RESULTS</span>
+
+                    <h2>Algorithm Comparison</h2>
+
+                    <p class="small-text">
+
+                        Compare the performance of different
+                        search strategies on the same maze.
+
+                    </p>
+
+                    <div class="table-wrapper">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+                                    <th>Algorithm</th>
+                                    <th>Visited</th>
+                                    <th>Path</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="comparisonBody">
+
+                                <tr>
+                                    <td colspan="3">
+                                        No results yet
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </aside>
+
+        </section>
+
+        <!-- AI Concepts -->
+        <section class="panel concepts">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="section-label">WHAT POWERS THE PROJECT</span>
+                    <h2>AI Concepts Used</h2>
+                </div>
+
+                <span class="concept-decoration">✦</span>
+
+            </div>
+
+            <div class="concept-grid">
+
+                <div class="concept-card">
+
+                    <div class="concept-icon pink">01</div>
+
+                    <h3>Breadth-First Search</h3>
+
+                    <p>
+                        Uses a queue and explores the maze
+                        level by level.
+                    </p>
+
+                </div>
+
+                <div class="concept-card">
+
+                    <div class="concept-icon purple">02</div>
+
+                    <h3>Depth-First Search</h3>
+
+                    <p>
+                        Uses a stack and explores deeply
+                        before backtracking.
+                    </p>
+
+                </div>
+
+                <div class="concept-card">
+
+                    <div class="concept-icon peach">03</div>
+
+                    <h3>A* Search</h3>
+
+                    <p>
+                        Combines actual path cost and
+                        heuristic distance.
+                    </p>
+
+                </div>
+
+                <div class="concept-card">
+
+                    <div class="concept-icon rose">04</div>
+
+                    <h3>Greedy Search</h3>
+
+                    <p>
+                        Uses heuristic distance to approach
+                        the destination.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+
+        <div class="footer-logo">🧩 AI Maze Solver</div>
+
+        <p>
+            Designed for learning Artificial Intelligence
+            Search Algorithms.
+        </p>
+
+        <span>MCA Academic Project | 2026</span>
+
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
